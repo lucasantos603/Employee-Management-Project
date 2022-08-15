@@ -26,7 +26,7 @@ class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form
     {
@@ -37,7 +37,8 @@ class EmployeeResource extends Resource
                         ->label('Country')
                         ->options(Country::all()->pluck('name', 'id')->toArray())
                         ->reactive()
-                        ->afterStateUpdated(fn (callable $set) => $set('state_id', null)),
+                        ->afterStateUpdated(fn (callable $set) => $set('state_id', null))
+                        ->required(),
 
                     Select::make('state_id')
                         ->label('State')
@@ -64,7 +65,7 @@ class EmployeeResource extends Resource
                             return $state->cities->pluck('name', 'id');
                         })
                         ->reactive()
-                         ->required(),
+                        ->required(),
                     // ->afterStateUpdated(fn(callable $set) => set('city_id', null)),
 
                     Select::make('department_id')
