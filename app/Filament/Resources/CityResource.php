@@ -52,7 +52,7 @@ class CityResource extends Resource
                 TextColumn::make('state.name')
             ])
             ->filters([
-                EmployeesRelationManager::class,
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -65,7 +65,7 @@ class CityResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            EmployeesRelationManager::class,
         ];
     }
 
